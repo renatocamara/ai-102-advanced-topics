@@ -261,6 +261,88 @@ public class ITSupoportAgent
 
 This C# example provides a clear demonstration of how to build an intelligent agent that can dynamically interact with external systems (simulated here as C# methods) by leveraging Semantic Kernel's tool integration capabilities. This pattern is highly extensible for various IT automation or business process automation scenarios.
 
+### How to Test the C# Implementation Example
+
+This section provides step-by-step instructions on how to set up, run, and verify the C# code example for the IT Support Agent.
+
+#### Prerequisites
+
+*   .NET SDK (version 6.0 or higher) installed.
+*   An Azure OpenAI Service instance with a chat model deployed (e.g., `gpt-3.5-turbo` or `gpt-4`). You will need the endpoint, API key, and the deployment name of your chat model.
+
+#### Setup
+
+1.  **Create a new C# Console Project:**
+    ```bash
+dotnet new console -n ITSupportAgentApp
+cd ITSupportAgentApp
+    ```
+2.  **Add NuGet Packages:** Open the `ITSupportAgentApp.csproj` file and add the following `ItemGroup`:
+    ```xml
+<ItemGroup>
+    <PackageReference Include="Microsoft.SemanticKernel" Version="1.0.0-beta10" />
+    <PackageReference Include="Microsoft.SemanticKernel.Connectors.OpenAI" Version="1.0.0-beta10" />
+</ItemGroup>
+    ```
+    Then, restore the packages:
+    ```bash
+dotnet restore
+    ```
+3.  **Create `Program.cs`:** Replace the content of `Program.cs` with the C# code provided above in the "C# Implementation Example" section. Ensure the `using` statements and class definitions are correct.
+
+#### Configuration
+
+Set the following environment variables with your Azure OpenAI credentials. Replace the placeholder values with your actual information.
+
+*   `AZURE_OPENAI_ENDPOINT="YOUR_AZURE_OPENAI_ENDPOINT"`
+*   `AZURE_OPENAI_KEY="YOUR_AZURE_OPENAI_KEY"`
+*   `AZURE_OPENAI_DEPLOYMENT_NAME="YOUR_AZURE_OPENAI_DEPLOYMENT_NAME"`
+
+**Example (for PowerShell on Windows):**
+```powershell
+$env:AZURE_OPENAI_ENDPOINT="https://your-openai-resource.openai.azure.com/"
+$env:AZURE_OPENAI_KEY="your-openai-api-key"
+$env:AZURE_OPENAI_DEPLOYMENT_NAME="your-chat-model-deployment-name"
+```
+
+**Example (for Bash/Zsh on Linux/macOS):**
+```bash
+export AZURE_OPENAI_ENDPOINT="https://your-openai-resource.openai.azure.com/"
+export AZURE_OPENAI_KEY="your-openai-api-key"
+export AZURE_OPENAI_DEPLOYMENT_NAME="your-chat-model-deployment-name"
+```
+
+#### Execution
+
+Run the application from the `ITSupportAgentApp` directory:
+
+```bash
+dotnet run
+```
+
+#### Expected Results
+
+The application will start an interactive chat session with the IT Support Agent. You can ask questions related to user status and password resets. The agent will use the simulated tools to respond.
+
+**Example Interaction:**
+
+```
+IT Support Agent Ready. Ask for assistance (type 'exit' to quit):
+
+You: Check the status of JohnDoe
+[Tool Call: CheckUserStatus for JohnDoe]
+Agent: User JohnDoe is active.
+
+You: Reset password for JaneSmith
+[Tool Call: ResetUserPassword for JaneSmith]
+Agent: Password for user JaneSmith has been successfully reset.
+
+You: What about a user named Alice?
+Agent: User Alice not found.
+
+You: exit
+```
+
 ### Python Implementation Example
 
 This Python example mirrors the C# implementation, demonstrating an IT support agent that uses Semantic Kernel to integrate and invoke custom tools for user management. We will simulate the tools as simple Python functions.
@@ -401,88 +483,6 @@ if __name__ == "__main__":
 
 This Python example provides a clear demonstration of how to build an intelligent agent that can dynamically interact with external systems (simulated here as Python functions) by leveraging Semantic Kernel's tool integration capabilities. This pattern is highly extensible for various IT automation or business process automation scenarios.
 
-### How to Test the C# Implementation Example
-
-This section provides step-by-step instructions on how to set up, run, and verify the C# code example for the IT Support Agent.
-
-#### Prerequisites
-
-*   .NET SDK (version 6.0 or higher) installed.
-*   An Azure OpenAI Service instance with a chat model deployed (e.g., `gpt-3.5-turbo` or `gpt-4`). You will need the endpoint, API key, and the deployment name of your chat model.
-
-#### Setup
-
-1.  **Create a new C# Console Project:**
-    ```bash
-dotnet new console -n ITSupportAgentApp
-cd ITSupportAgentApp
-    ```
-2.  **Add NuGet Packages:** Open the `ITSupportAgentApp.csproj` file and add the following `ItemGroup`:
-    ```xml
-<ItemGroup>
-    <PackageReference Include="Microsoft.SemanticKernel" Version="1.0.0-beta10" />
-    <PackageReference Include="Microsoft.SemanticKernel.Connectors.OpenAI" Version="1.0.0-beta10" />
-</ItemGroup>
-    ```
-    Then, restore the packages:
-    ```bash
-dotnet restore
-    ```
-3.  **Create `Program.cs`:** Replace the content of `Program.cs` with the C# code provided in the `topic5_integrate_mcp_tools.md` document (specifically the C# example). Ensure the `using` statements and class definitions are correct.
-
-#### Configuration
-
-Set the following environment variables with your Azure OpenAI credentials. Replace the placeholder values with your actual information.
-
-*   `AZURE_OPENAI_ENDPOINT="YOUR_AZURE_OPENAI_ENDPOINT"`
-*   `AZURE_OPENAI_KEY="YOUR_AZURE_OPENAI_KEY"`
-*   `AZURE_OPENAI_DEPLOYMENT_NAME="YOUR_AZURE_OPENAI_DEPLOYMENT_NAME"`
-
-**Example (for PowerShell on Windows):**
-```powershell
-$env:AZURE_OPENAI_ENDPOINT="https://your-openai-resource.openai.azure.com/"
-$env:AZURE_OPENAI_KEY="your-openai-api-key"
-$env:AZURE_OPENAI_DEPLOYMENT_NAME="your-chat-model-deployment-name"
-```
-
-**Example (for Bash/Zsh on Linux/macOS):**
-```bash
-export AZURE_OPENAI_ENDPOINT="https://your-openai-resource.openai.azure.com/"
-export AZURE_OPENAI_KEY="your-openai-api-key"
-export AZURE_OPENAI_DEPLOYMENT_NAME="your-chat-model-deployment-name"
-```
-
-#### Execution
-
-Run the application from the `ITSupportAgentApp` directory:
-
-```bash
-dotnet run
-```
-
-#### Expected Results
-
-The application will start an interactive chat session with the IT Support Agent. You can ask questions related to user status and password resets. The agent will use the simulated tools to respond.
-
-**Example Interaction:**
-
-```
-IT Support Agent Ready. Ask for assistance (type 'exit' to quit):
-
-You: Check the status of JohnDoe
-[Tool Call: CheckUserStatus for JohnDoe]
-Agent: User JohnDoe is active.
-
-You: Reset password for JaneSmith
-[Tool Call: ResetUserPassword for JaneSmith]
-Agent: Password for user JaneSmith has been successfully reset.
-
-You: What about a user named Alice?
-Agent: User Alice not found.
-
-You: exit
-```
-
 ### How to Test the Python Implementation Example
 
 This section provides step-by-step instructions on how to set up, run, and verify the Python code example for the IT Support Agent.
@@ -496,8 +496,10 @@ This section provides step-by-step instructions on how to set up, run, and verif
 
 1.  **Create a new Python file:** Create a file named `it_support_agent.py`.
 2.  **Install required packages:**
-    ```pip install semantic-kernel openai```
-3.  **Add the Python code:** Copy the Python code provided in the `topic5_integrate_mcp_tools.md` document (specifically the Python example) into `it_support_agent.py`.
+    ```bash
+pip install semantic-kernel openai
+    ```
+3.  **Add the Python code:** Copy the Python code provided above in the "Python Implementation Example" section into `it_support_agent.py`.
 
 #### Configuration
 
@@ -551,5 +553,3 @@ Agent: User Alice not found.
 
 You: exit
 ```
-
-
