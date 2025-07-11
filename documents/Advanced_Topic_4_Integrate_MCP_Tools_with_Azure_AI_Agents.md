@@ -274,9 +274,9 @@ This section provides step-by-step instructions on how to set up, run, and verif
 
 1.  **Create a new C# Console Project:**
     ```bash
-dotnet new console -n ITSupportAgentApp
-cd ITSupportAgentApp
-    
+    dotnet new console -n ITSupportAgentApp
+    cd ITSupportAgentApp
+    ```
 2.  **Add NuGet Packages:** Open the `ITSupportAgentApp.csproj` file and add the following `ItemGroup`:
     ```xml
 <ItemGroup>
