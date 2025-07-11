@@ -31,7 +31,7 @@ This repository covers the following advanced topics:
 
 1.  [**Generative AI and AI Agents with Azure AI and Semantic Kernel:**](documents/Advanced_Topic_1_Generative_AI_and_AI_Agents_with_Azure_AI_and_Semantic_Kernel.md) Exploring the synergy between generative models and autonomous agents, orchestrated by Semantic Kernel.
 2.  [**Retrieval-Augmented Generation (RAG):**](documents/Advanced_Topic_2_Retrieval_Augmented_Generation.md) Enhancing LLM responses by grounding them in external, authoritative data sources.
-3.  [**Fine-Tuning and Using Custom Models:**](documents/Advanced_Topic_3_%20Fine_Tuning_and_Using_Custom_Models.md) Adapting pre-trained models to specific domains and tasks for improved performance.
+3.  [**Fine-Tuning and Using Custom Models:**](documents/Advanced_Topic_3_Fine_Tuning_and_Using_Custom_Models.md) Adapting pre-trained models to specific domains and tasks for improved performance.
 4.  [**Integrate MCP Tools with Azure AI Agents:**](documents/Advanced_Topic_4_Integrate_MCP_Tools_with_Azure_AI_Agents.md) Enabling AI agents to dynamically discover and utilize external functionalities through the Model Context Protocol.
 
 Each topic has a dedicated Markdown document in the `documents/` directory, which includes detailed explanations, use cases, best practices, and code examples. Testing instructions for each code example are also integrated directly into their respective documents.
@@ -91,14 +91,11 @@ The technical documents are located in the `documents/` directory. Each document
 
 ```
 .github/
-├── CONTRIBUTING.md
-├── CODE_OF_CONDUCT.md
 documents/
-├── topic1_gen_ai_agents.md
-├── topic_rag.md
-├── topic4_fine_tuning_custom_models.md
-├── topic5_integrate_mcp_tools.md
-└── ... (other related documents)
+├── Advanced_Topic_1_Generative_AI_and_AI_Agents_with_Azure_AI_and_Semantic_Kernel.md
+├── Advanced_Topic_2_Retrieval_Augmented_Generation.md
+├── Advanced_Topic_3_Fine_Tuning_and_Using_Custom_Models.md
+└── Advanced_Topic_4_Integrate_MCP_Tools_with_Azure_AI_Agents.md
 README.md
 ```
 
