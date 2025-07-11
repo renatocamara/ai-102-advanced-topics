@@ -151,7 +151,7 @@ public class LegalSummarizer
         // Replace with your actual Azure OpenAI credentials and fine-tuned model deployment name
         string endpoint = Environment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT") ?? "YOUR_AZURE_OPENAI_ENDPOINT";
         string apiKey = Environment.GetEnvironmentVariable("AZURE_OPENAI_KEY") ?? "YOUR_AZURE_OPENAI_KEY";
-        string deploymentName = Environment.GetEnvironmentVariable("AZURE_OPENAI_FINE_TUNED_DEPLOYMENT_NAME") ?? "YOUR_FINE_TUNED_MODEL_DEPLOYMENT_NAME";
+        string deploymentName = Environment.GetVariable("AZURE_OPENAI_FINE_TUNED_DEPLOYMENT_NAME") ?? "YOUR_FINE_TUNED_MODEL_DEPLOYMENT_NAME";
 
         if (new[] { endpoint, apiKey, deploymentName }.Any(string.IsNullOrWhiteSpace))
         {
@@ -346,20 +346,23 @@ This section provides step-by-step instructions on how to set up, run, and verif
 
 1.  **Create a new C# Console Project:**
     ```bash
-dotnet new console -n LegalSummarizerApp
-cd LegalSummarizerApp
+    dotnet new console -n LegalSummarizerApp
+    cd LegalSummarizerApp
     ```
+
 2.  **Add NuGet Packages:** Open the `LegalSummarizerApp.csproj` file and add the following `ItemGroup`:
     ```xml
-<ItemGroup>
-    <PackageReference Include="Azure.AI.OpenAI" Version="1.0.0-beta.10" />
-</ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Azure.AI.OpenAI" Version="1.0.0-beta.10" />
+    </ItemGroup>
     ```
+
     Then, restore the packages:
     ```bash
-dotnet restore
+    dotnet restore
     ```
-3.  **Create `Program.cs`:** Replace the content of `Program.cs` with the C# code provided in the `topic4_fine_tuning_custom_models.md` document (specifically the C# example). Ensure the `using` statements and class definitions are correct.
+
+3.  **Create `Program.cs`:** Replace the content of `Program.cs` with the C# code provided in this document (specifically the C# example). Ensure the `using` statements and class definitions are correct.
 
 #### Configuration
 
@@ -429,11 +432,13 @@ This section provides step-by-step instructions on how to set up, run, and verif
 #### Setup
 
 1.  **Create a new Python file:** Create a file named `legal_summarizer.py`.
+
 2.  **Install required packages:**
     ```bash
-pip install openai
+    pip install openai
     ```
-3.  **Add the Python code:** Copy the Python code provided in the `topic4_fine_tuning_custom_models.md` document (specifically the Python example) into `legal_summarizer.py`.
+    
+3.  **Add the Python code:** Copy the Python code provided in this document (specifically the Python example) into `legal_summarizer.py`.
 
 #### Configuration
 
@@ -490,5 +495,3 @@ Purpose: To protect confidential information exchanged during discussions regard
 Summary 2:
 [Summary of NDA focusing on purpose, obligations, and governing law]
 ```
-
-
