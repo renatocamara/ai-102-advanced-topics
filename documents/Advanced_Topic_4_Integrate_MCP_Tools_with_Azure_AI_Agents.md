@@ -282,8 +282,7 @@ This section provides step-by-step instructions on how to set up, run, and verif
     <ItemGroup>
         <PackageReference Include="Microsoft.SemanticKernel" Version="1.0.0-beta10" />
         <PackageReference Include="Microsoft.SemanticKernel.Connectors.OpenAI" Version="1.0.0-beta10" />
-    </ItemGroup>    
-    ```
+    </ItemGroup>
     
     Then, restore the packages:
     ```bash
