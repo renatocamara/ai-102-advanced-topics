@@ -269,22 +269,26 @@ This section provides step-by-step instructions on how to set up, run, and verif
 #### Setup
 
 1.  **Create a new C# Console Project:**
+    
     ```bash
-dotnet new console -n TechnicalSupportRAGApp
-cd TechnicalSupportRAGApp
+    dotnet new console -n TechnicalSupportRAGApp
+    cd TechnicalSupportRAGApp
     ```
+
 2.  **Add NuGet Packages:** Open the `TechnicalSupportRAGApp.csproj` file and add the following `ItemGroup`:
     ```xml
-<ItemGroup>
-    <PackageReference Include="Microsoft.SemanticKernel" Version="1.0.0-beta10" />
-    <PackageReference Include="Azure.AI.OpenAI" Version="1.0.0-beta.10" />
-    <PackageReference Include="Azure.Search.Documents" Version="11.4.0" />
-</ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Microsoft.SemanticKernel" Version="1.0.0-beta10" />
+        <PackageReference Include="Azure.AI.OpenAI" Version="1.0.0-beta.10" />
+        <PackageReference Include="Azure.Search.Documents" Version="11.4.0" />
+    </ItemGroup>
     ```
+
     Then, restore the packages:
     ```bash
-dotnet restore
+    dotnet restore
     ```
+
 3.  **Create `Program.cs`:** Replace the content of `Program.cs` with the C# code provided in the `topic_rag.md` document (specifically the C# RAG example). Ensure the `using` statements and class definitions are correct.
 
 #### Configuration
@@ -486,10 +490,13 @@ This section provides step-by-step instructions on how to set up, run, and verif
 #### Setup
 
 1.  **Create a new Python file:** Create a file named `technical_support_rag.py`.
+
 2.  **Install required packages:**
+    
     ```bash
-pip install semantic-kernel azure-search-documents openai
+    pip install semantic-kernel azure-search-documents openai
     ```
+
 3.  **Add the Python code:** Copy the Python code provided in the `topic_rag.md` document (specifically the Python RAG example) into `technical_support_rag.py`.
 
 #### Configuration
@@ -552,5 +559,3 @@ Agent: The maximum operating temperature for the ABC-456 sensor is 85 degrees Ce
 
 You: exit
 ```
-
-
