@@ -269,6 +269,7 @@ This section provides step-by-step instructions on how to set up, run, and verif
 #### Setup
 
 1.  **Create a new C# Console Project:**
+
     ```bash
     dotnet new console -n TechnicalSupportRAGApp
     cd TechnicalSupportRAGApp
