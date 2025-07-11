@@ -279,14 +279,15 @@ This section provides step-by-step instructions on how to set up, run, and verif
     ```
 2.  **Add NuGet Packages:** Open the `ITSupportAgentApp.csproj` file and add the following `ItemGroup`:
     ```xml
-<ItemGroup>
-    <PackageReference Include="Microsoft.SemanticKernel" Version="1.0.0-beta10" />
-    <PackageReference Include="Microsoft.SemanticKernel.Connectors.OpenAI" Version="1.0.0-beta10" />
-</ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Microsoft.SemanticKernel" Version="1.0.0-beta10" />
+        <PackageReference Include="Microsoft.SemanticKernel.Connectors.OpenAI" Version="1.0.0-beta10" />
+    </ItemGroup>    
     ```
+    
     Then, restore the packages:
     ```bash
-dotnet restore
+    dotnet restore
     ```
 3.  **Create `Program.cs`:** Replace the content of `Program.cs` with the C# code provided above in the "C# Implementation Example" section. Ensure the `using` statements and class definitions are correct.
 
