@@ -2,11 +2,11 @@
 
 ## 1. Concept Explanation
 
-Generative AI has revolutionized the way we interact with technology. At its core, it's about creating new, original content—be it text, images, or code—that is coherent and contextually relevant. When combined with the concept of AI agents, we move beyond simple content generation to creating autonomous systems that can perform complex tasks, reason about problems, and interact with their environment. Azure AI, particularly through the Azure AI Studio, provides a comprehensive platform for building these sophisticated AI solutions. A key component in this ecosystem is the Semantic Kernel, an open-source SDK that acts as an orchestration layer, allowing developers to integrate large language models (LLMs) with conventional programming languages like C# and Python.
+Generative AI has revolutionized the way we interact with technology. At its core, it's about creating new, original content—be it text, images, or code—that is coherent and contextually relevant. When combined with the concept of AI agents, we move beyond simple content generation to creating autonomous systems that can perform complex tasks, reason about problems, and interact with their environment. Azure AI, particularly through the Azure AI Foundry, provides a comprehensive platform for building these sophisticated AI solutions. A key component in this ecosystem is the Semantic Kernel, an open-source SDK that acts as an orchestration layer, allowing developers to integrate large language models (LLMs) with conventional programming languages like C# and Python.
 
 **Key Components:**
 
-*   **Azure AI Studio:** A unified platform for building, managing, and deploying AI solutions. It provides access to a wide range of models from the model catalog, tools for prompt engineering (Prompt Flow), and capabilities for fine-tuning and evaluating models.
+*   **Azure AI Foundry:** A unified platform for building, managing, and deploying AI solutions. It provides access to a wide range of models from the model catalog, tools for prompt engineering (Prompt Flow), and capabilities for fine-tuning and evaluating models.
 *   **Semantic Kernel:** An open-source SDK that simplifies the integration of LLMs into applications. It provides a framework for creating and chaining AI skills, enabling developers to build intelligent agents that can perform tasks like summarization, question answering, and code generation. It supports various LLMs, including those from Azure OpenAI Service.
 *   **Retrieval Augmented Generation (RAG):** A technique that enhances the capabilities of LLMs by grounding their responses in external, authoritative data sources. Instead of relying solely on the knowledge embedded during training, RAG systems retrieve relevant information from a knowledge base and use it to augment the prompt given to the LLM, leading to more accurate, relevant, and up-to-date responses. This is particularly useful for enterprise applications where LLMs need to access proprietary or real-time data.
 *   **Fine-tuning Language Models:** The process of further training a pre-trained language model on a smaller, task-specific dataset. This allows the model to adapt to specific domains, styles, or tasks, improving its performance for particular use cases without having to train a model from scratch.
@@ -139,7 +139,7 @@ public class TechnicalSupportAgent
 
         // Step 2: Augment the prompt with retrieved context and send to LLM via Semantic Kernel
         Console.WriteLine("Generating answer with LLM using retrieved context...");
-        var prompt = $"You are a highly knowledgeable technical support agent for a manufacturing company. Use the following technical documentation to answer the user's question. If the answer is not in the provided documentation, state that you cannot find the information.\n\nTechnical Documentation:\n{context}\n\nUser Question: {query}\n\nAnswer:";
+        var prompt = $"You are a highly knowledgeable technical support agent for a manufacturing company. Use the following technical documentation to answer the user's question. If the answer is not in the provided documentation, state that you don't know.\n\nTechnical Documentation:\n{context}\n\nUser Question: {query}\n\nAnswer:";
 
         var chatCompletionService = _kernel.GetRequiredService<IChatCompletionService>();
         var result = await chatCompletionService.GetChatMessageContentAsync(prompt);
@@ -149,7 +149,7 @@ public class TechnicalSupportAgent
 
     public static async Task Main(string[] args)
     {
-        // Replace with your actual Azure OpenAI and Azure AI Search credentials
+        // Replace with your actual Azure OpenAI credentials
         string openAiEndpoint = Environment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT") ?? "YOUR_AZURE_OPENAI_ENDPOINT";
         string openAiKey = Environment.GetEnvironmentVariable("AZURE_OPENAI_KEY") ?? "YOUR_AZURE_OPENAI_KEY";
         string openAiDeploymentName = Environment.GetEnvironmentVariable("AZURE_OPENAI_DEPLOYMENT_NAME") ?? "YOUR_AZURE_OPENAI_DEPLOYMENT_NAME";
@@ -208,6 +208,101 @@ public class TechnicalSupportAgent
     *   `AZURE_SEARCH_INDEX_NAME`
 
 This C# example provides a solid foundation for building sophisticated RAG-based AI agents that can leverage your proprietary data for accurate and context-aware responses.
+
+### How to Test the C# Implementation Example
+
+This section provides step-by-step instructions on how to set up, run, and verify the C# code example for the RAG-based Technical Support Agent.
+
+#### Prerequisites
+
+*   .NET SDK (version 6.0 or higher) installed.
+*   An Azure OpenAI Service instance with a chat model deployed (e.g., `gpt-3.5-turbo` or `gpt-4`). You will need the endpoint, API key, and the deployment name of your chat model.
+*   An Azure AI Search service with an index populated with your technical documentation. You will need the search service endpoint, API key, and the index name. Ensure your documents have a `content` field containing the text to be searched.
+
+#### Setup
+
+1.  **Create a new C# Console Project:**    
+    ```bash
+    dotnet new console -n TechnicalSupportRAGApp
+    cd TechnicalSupportRAGApp
+    ```
+
+2.  **Add NuGet Packages:** Open the `TechnicalSupportRAGApp.csproj` file and add the following `ItemGroup`:
+    ```xml
+    <ItemGroup>
+        <PackageReference Include="Microsoft.SemanticKernel" Version="1.0.0-beta10" />
+        <PackageReference Include="Azure.AI.OpenAI" Version="1.0.0-beta.10" />
+        <PackageReference Include="Azure.Search.Documents" Version="11.4.0" />
+    </ItemGroup>
+    ```
+
+    Then, restore the packages:    
+    ```bash
+    dotnet restore
+    ```
+
+3.  **Create `Program.cs`:** Replace the content of `Program.cs` with the C# code provided above in the "C# Implementation Example" section. Ensure the `using` statements and class definitions are correct.
+
+#### Configuration
+
+Set the following environment variables with your Azure OpenAI and Azure AI Search credentials. Replace the placeholder values with your actual information.
+
+*   `AZURE_OPENAI_ENDPOINT="YOUR_AZURE_OPENAI_ENDPOINT"`
+*   `AZURE_OPENAI_KEY="YOUR_AZURE_OPENAI_KEY"`
+*   `AZURE_OPENAI_DEPLOYMENT_NAME="YOUR_AZURE_OPENAI_DEPLOYMENT_NAME"`
+*   `AZURE_SEARCH_SERVICE_ENDPOINT="YOUR_AZURE_SEARCH_SERVICE_ENDPOINT"`
+*   `AZURE_SEARCH_API_KEY="YOUR_AZURE_SEARCH_API_KEY"`
+*   `AZURE_SEARCH_INDEX_NAME="YOUR_AZURE_SEARCH_INDEX_NAME"`
+
+**Example (for PowerShell on Windows):**
+```powershell
+$env:AZURE_OPENAI_ENDPOINT="https://your-openai-resource.openai.azure.com/"
+$env:AZURE_OPENAI_KEY="your-openai-api-key"
+$env:AZURE_OPENAI_DEPLOYMENT_NAME="your-chat-model-deployment-name"
+$env:AZURE_SEARCH_SERVICE_ENDPOINT="https://your-search-service.search.windows.net"
+$env:AZURE_SEARCH_API_KEY="your-search-api-key"
+$env:AZURE_SEARCH_INDEX_NAME="your-search-index-name"
+```
+
+**Example (for Bash/Zsh on Linux/macOS):**
+```bash
+export AZURE_OPENAI_ENDPOINT="https://your-openai-resource.openai.azure.com/"
+export AZURE_OPENAI_KEY="your-openai-api-key"
+export AZURE_OPENAI_DEPLOYMENT_NAME="your-chat-model-deployment-name"
+export AZURE_SEARCH_SERVICE_ENDPOINT="https://your-search-service.search.windows.net"
+export AZURE_SEARCH_API_KEY="your-search-api-key"
+export AZURE_SEARCH_INDEX_NAME="your-search-index-name"
+```
+
+#### Execution
+
+Run the application from the `TechnicalSupportRAGApp` directory:
+
+```bash
+dotnet run
+```
+
+#### Expected Results
+
+The application will start an interactive chat session with the Technical Support Agent. You can ask questions related to the content of your Azure AI Search index. The agent will retrieve relevant information and use it to answer your questions.
+
+**Example Interaction (assuming your index contains information about a specific machinery component):**
+
+```
+Technical Support Agent Ready. Ask a question (type 'exit' to quit):
+
+You: How do I troubleshoot the XYZ-123 motor?
+Searching for relevant documents for query: How do I troubleshoot the XYZ-123 motor?
+Generating answer with LLM using retrieved context...
+Agent: To troubleshoot the XYZ-123 motor, first check the power supply connections. Ensure they are securely fastened and that the motor is receiving the correct voltage as specified in the technical manual section 3.2. If the power supply is adequate, inspect the motor for any visible damage or obstructions. Refer to section 4.1 for common fault codes and their resolutions.
+
+You: What is the maximum operating temperature for the ABC-456 sensor?
+Searching for relevant documents for query: What is the maximum operating temperature for the ABC-456 sensor?
+Generating answer with LLM using retrieved context...
+Agent: The maximum operating temperature for the ABC-456 sensor is 85 degrees Celsius. This information can be found in the sensor's specifications sheet, section 2.1.
+
+You: exit
+```
 
 ### Python Implementation Example
 
@@ -348,22 +443,26 @@ This section provides step-by-step instructions on how to set up, run, and verif
 
 1.  **Create a new C# Console Project:**
     ```bash
-dotnet new console -n TechnicalSupportRAGApp
-cd TechnicalSupportRAGApp
+    dotnet new console -n TechnicalSupportRAGApp
+    cd TechnicalSupportRAGApp    
     ```
+
 2.  **Add NuGet Packages:** Open the `TechnicalSupportRAGApp.csproj` file and add the following `ItemGroup`:
     ```xml
-<ItemGroup>
-    <PackageReference Include="Microsoft.SemanticKernel" Version="1.0.0-beta10" />
-    <PackageReference Include="Azure.AI.OpenAI" Version="1.0.0-beta.10" />
-    <PackageReference Include="Azure.Search.Documents" Version="11.4.0" />
-</ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Microsoft.SemanticKernel" Version="1.0.0-beta10" />
+        <PackageReference Include="Azure.AI.OpenAI" Version="1.0.0-beta.10" />
+        <PackageReference Include="Azure.Search.Documents" Version="11.4.0" />
+    </ItemGroup>
     ```
+    
     Then, restore the packages:
+
     ```bash
-dotnet restore
+    dotnet restore
     ```
-3.  **Create `Program.cs`:** Replace the content of `Program.cs` with the C# code provided in the `topic1_gen_ai_agents.md` document (specifically the C# RAG example). Ensure the `using` statements and class definitions are correct.
+
+3.  **Create `Program.cs`:** Replace the content of `Program.cs` with the C# code provided above in the "C# Implementation Example" section. Ensure the `using` statements and class definitions are correct.
 
 #### Configuration
 
@@ -439,11 +538,13 @@ This section provides step-by-step instructions on how to set up, run, and verif
 #### Setup
 
 1.  **Create a new Python file:** Create a file named `technical_support_rag.py`.
+
 2.  **Install required packages:**
     ```bash
-pip install semantic-kernel azure-search-documents openai
+    pip install semantic-kernel azure-search-documents openai
     ```
-3.  **Add the Python code:** Copy the Python code provided in the `topic1_gen_ai_agents.md` document (specifically the Python RAG example) into `technical_support_rag.py`.
+
+3.  **Add the Python code:** Copy the Python code provided above in the "Python Implementation Example" section into `technical_support_rag.py`.
 
 #### Configuration
 
@@ -505,5 +606,3 @@ Agent: The maximum operating temperature for the ABC-456 sensor is 85 degrees Ce
 
 You: exit
 ```
-
-
