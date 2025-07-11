@@ -496,9 +496,7 @@ This section provides step-by-step instructions on how to set up, run, and verif
 
 1.  **Create a new Python file:** Create a file named `it_support_agent.py`.
 2.  **Install required packages:**
-    ```bash
-pip install semantic-kernel openai
-    ```
+    ```pip install semantic-kernel openai```
 3.  **Add the Python code:** Copy the Python code provided in the `topic5_integrate_mcp_tools.md` document (specifically the Python example) into `it_support_agent.py`.
 
 #### Configuration
