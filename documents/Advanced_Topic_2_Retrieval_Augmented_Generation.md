@@ -287,7 +287,7 @@ This section provides step-by-step instructions on how to set up, run, and verif
     ```bash
     dotnet restore
     ```
-    
+
 3.  **Create `Program.cs`:** Replace the content of `Program.cs` with the C# code provided above in the "C# Implementation Example" section. Ensure the `using` statements and class definitions are correct.
 
 #### Configuration
@@ -489,6 +489,7 @@ This section provides step-by-step instructions on how to set up, run, and verif
 #### Setup
 
 1.  **Create a new Python file:** Create a file named `technical_support_rag.py`.
+
 2.  **Install required packages:**
     
     ```bash
