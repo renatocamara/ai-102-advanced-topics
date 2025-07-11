@@ -98,7 +98,7 @@ Our sample implementation will simulate an intelligent technical support agent f
 **Components:**
 
 *   **Azure OpenAI Service:** To host the large language model (e.g., `gpt-3.5-turbo` or `gpt-4`).
-*   **Azure AI Search (formerly Azure Cognitive Search):** To index and search the technical documentation.
+*   **Azure AI Search:** To index and search the technical documentation.
 *   **Azure Blob Storage:** To store the raw technical documentation files.
 *   **Semantic Kernel:** To orchestrate the interaction between the user, the search service, and the LLM.
 
@@ -186,7 +186,7 @@ public class TechnicalSupportAgent
 
         // Step 2: Augment the prompt with retrieved context and send to LLM via Semantic Kernel
         Console.WriteLine("Generating answer with LLM using retrieved context...");
-        var prompt = $"You are a highly knowledgeable technical support agent for a manufacturing company. Use the following technical documentation to answer the user's question. If the answer is not in the provided documentation, state that you cannot find the information.\n\nTechnical Documentation:\n{context}\n\nUser Question: {query}\n\nAnswer:";
+        var prompt = $"You are a highly knowledgeable technical support agent for a manufacturing company. Use the following technical documentation to answer the user's question. If the answer is not in the provided documentation, state that you don't know.\n\nTechnical Documentation:\n{context}\n\nUser Question: {query}\n\nAnswer:";
 
         var chatCompletionService = _kernel.GetRequiredService<IChatCompletionService>();
         var result = await chatCompletionService.GetChatMessageContentAsync(prompt);
@@ -196,7 +196,7 @@ public class TechnicalSupportAgent
 
     public static async Task Main(string[] args)
     {
-        // Replace with your actual Azure OpenAI and Azure AI Search credentials
+        // Replace with your actual Azure OpenAI credentials
         string openAiEndpoint = Environment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT") ?? "YOUR_AZURE_OPENAI_ENDPOINT";
         string openAiKey = Environment.GetEnvironmentVariable("AZURE_OPENAI_KEY") ?? "YOUR_AZURE_OPENAI_KEY";
         string openAiDeploymentName = Environment.GetEnvironmentVariable("AZURE_OPENAI_DEPLOYMENT_NAME") ?? "YOUR_AZURE_OPENAI_DEPLOYMENT_NAME";
@@ -269,7 +269,6 @@ This section provides step-by-step instructions on how to set up, run, and verif
 #### Setup
 
 1.  **Create a new C# Console Project:**
-    
     ```bash
     dotnet new console -n TechnicalSupportRAGApp
     cd TechnicalSupportRAGApp
@@ -288,8 +287,8 @@ This section provides step-by-step instructions on how to set up, run, and verif
     ```bash
     dotnet restore
     ```
-
-3.  **Create `Program.cs`:** Replace the content of `Program.cs` with the C# code provided in the `topic_rag.md` document (specifically the C# RAG example). Ensure the `using` statements and class definitions are correct.
+    
+3.  **Create `Program.cs`:** Replace the content of `Program.cs` with the C# code provided above in the "C# Implementation Example" section. Ensure the `using` statements and class definitions are correct.
 
 #### Configuration
 
@@ -490,14 +489,13 @@ This section provides step-by-step instructions on how to set up, run, and verif
 #### Setup
 
 1.  **Create a new Python file:** Create a file named `technical_support_rag.py`.
-
 2.  **Install required packages:**
     
     ```bash
     pip install semantic-kernel azure-search-documents openai
     ```
 
-3.  **Add the Python code:** Copy the Python code provided in the `topic_rag.md` document (specifically the Python RAG example) into `technical_support_rag.py`.
+3.  **Add the Python code:** Copy the Python code provided above in the "Python Implementation Example" section into `technical_support_rag.py`.
 
 #### Configuration
 
