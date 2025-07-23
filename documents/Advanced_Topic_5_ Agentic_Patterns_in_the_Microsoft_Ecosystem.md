@@ -48,9 +48,6 @@ The rise of large language models (LLMs) has significantly propelled the develop
 
 
 
-
-
-
 ## 2. Agentic Patterns in Microsoft's Ecosystem
 
 Microsoft is heavily investing in agentic AI, providing a robust ecosystem of tools and platforms that enable developers to build and deploy intelligent agents. These platforms offer varying levels of abstraction and control, catering to different development needs.
