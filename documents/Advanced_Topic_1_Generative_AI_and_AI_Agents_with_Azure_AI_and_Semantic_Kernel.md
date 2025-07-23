@@ -1,4 +1,4 @@
-# Advanced Topic 1: Generative AI and AI Agents with Azure AI and Semantic Kernel
+# Advanced Topic: Generative AI and AI Agents with Azure AI and Semantic Kernel
 
 ## 1. Concept Explanation
 
